@@ -5,22 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "tb_payment")
+@Table(name = "tb_category")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Payment {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant moment;
+    private String name;
 
-    @OneToOne
-    @MapsId
-    private Order order;
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 }

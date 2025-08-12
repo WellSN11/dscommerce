@@ -21,6 +21,7 @@ public class User {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     private String phone;
@@ -32,5 +33,4 @@ public class User {
 
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
-
 }
